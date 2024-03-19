@@ -1,0 +1,293 @@
+.login-container{
+    display: flex;
+    flex-direction: row;
+    width: 60%;
+    height: 60%;
+    justify-content: center;
+    align-self: center;
+    border-radius: 15px 20px 20px 15px;
+
+    background-color:  var(--twitter-blue);
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+}
+
+.greeting-background {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+.join-twitter-text {
+    text-align: center;
+    color: white;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 18px;
+    width: 80%;
+}
+
+.join-twitter-container {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.join-twitter-image {
+    min-height: 360px;
+    width: 360px;
+    background-image: url(../assets/people.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+
+.form-container {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    background-color: white;
+    border-radius: 0px 15px 15px 0;
+}
+
+
+.login-form {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    background-color: white;
+   
+    
+}
+
+.logo-container {
+    height: 75px;
+    width: 75px;
+    align-self: center;
+    padding-bottom: 30px;
+
+    background-image: url(../assets/logo.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.login-container h1 {
+    text-align: center;
+    font-size: 27px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    padding-bottom: 30px;
+}
+
+
+#name {
+    padding: 10px;
+    margin: 20px 0 0px 0;
+    border-style: none;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    border-radius: 2px;
+    
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+#email {
+    padding: 10px;
+    margin: 20px 0 20px 0;
+    border-style: none;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    border-radius: 2px;
+    
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 15px;
+    cursor: pointer;
+
+
+}
+
+#password {
+    padding: 10px;
+    border-style: none;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    border-radius: 2px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 15px;
+    cursor: pointer;
+
+
+}
+
+
+.error-message {
+    margin: 10px 0 10px 0;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 15px;
+    color: var(--twitter-red);
+}
+
+.login-button {
+    padding: 10px;
+    border-style: none;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    background-color: var(--twitter-blue);
+    color: white;
+    border-radius: 2px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    margin-top: 40px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+
+
+.login-button :hover {
+
+}
+
+
+
+#login-state-button {
+    border-style: none;
+    background-color: transparent;
+    color: var(--twitter-blue);
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    display: flex;
+    justify-content: center;
+    font-size: 15px;
+    text-decoration: underline;
+    cursor: pointer;
+
+    
+}
+
+.signup-span {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    padding-top: 40px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+   
+
+}
+
+.signup-span p {
+    align-self: center;
+    font-size: 16px;
+
+}
+
+
+.reset-password-button {
+    padding: 10px;
+    border-style: none;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    background-color: var(--twitter-blue);
+    color: white;
+    border-radius: 2px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    margin-top: 20px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.back-to-login-link {
+    padding-top: 30px;
+    align-self: left;
+    font-size: 16px;
+    color: var(--twitter-blue);
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    cursor: pointer;
+
+    font-size: 15px;
+    text-decoration: underline;
+}
+
+.forgot-password-link {
+    margin-top: 20px;
+    color: var(--twitter-blue);
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    cursor: pointer;
+
+    font-size: 15px;
+    text-decoration: underline;
+}
+
+
+.profile-pic-placeholder {
+    height: 110px;
+    width: 110px;   
+    align-self: center;
+    margin-bottom: 20px;
+    border-radius: 100px;
+    background-color: white;
+}
+
+.upload-profile-pic-button {
+    background-color: transparent;
+    border-style: solid;
+    border-radius: 2px;
+    border-color: var(--twitter-blue);
+    color: var(--twitter-blue);
+    padding: 10px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.hidden-file-input {
+    display: none;
+}
+
+#profile-pic-input {
+
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  
+
+}
+#profile-pic-input button {
+    color: aquamarine;
+}
+
+#red-error {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: var(--twitter-red);
+}
+
+#green-error {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: var(--twitter-green);
+}

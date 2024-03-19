@@ -1,0 +1,114 @@
+/* Define color variables */
+:root {
+    /* Blue */
+    --twitter-blue: #1DA1F2;
+    
+    /* White */
+    --twitter-white: #FFFFFF;
+    
+    /* Gray */
+    --twitter-gray-light: #F5F5F5;
+    --twitter-gray-medium: #657786;
+    --twitter-gray-dark: #14171A;
+    
+    /* Accent Colors */
+    --twitter-green: #17BF63;
+    --twitter-red: #E0245E;
+}
+
+  .roboto-light {
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+  }
+  
+  .roboto-regular {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .roboto-medium {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+  }
+  
+  .roboto-bold {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+
+
+
+/* Use Roboto font */
+body {
+    font-family: 'Roboto', sans-serif;
+}
+  
+/* Example usage */
+body {
+    background-color: var(--twitter-white);
+    color: var(--twitter-gray-medium);
+}
+  
+.button {
+    background-color: var(--twitter-blue);
+    color: var(--twitter-white);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+  
+.link {
+    color: var(--twitter-blue);
+    text-decoration: none;
+}
+  
+.link:hover {
+    text-decoration: underline;
+}
+  
+
+#app-container {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+   
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+
+html, body {
+    overflow: hidden;
+}
+
+#switch-form-button {
+  border: none;
+  background-color: transparent;
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 15px;
+  color: var(--twitter-blue);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.tweet{
+  display: flex;
+    justify-content: space-around;
+    border-style: none;
+    border-radius: 1px;
+    border-radius: 12px;
+    margin: 24px 0 24px 0;
+    padding: 12px;
+    background-color: rgb(207, 207, 207);
+}
+
+
+

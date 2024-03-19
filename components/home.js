@@ -1,23 +1,57 @@
-function createHomeComponent(){
-    // Create a container for the home component
+import AppState from './state.js';
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+import { fetchTweetsFromFollowing } from '../api/fetchTweets.js';
+import { createTweetForm } from './createTweet.js';
+import { renderTweets } from './createFeed.js';
+import { refreshTweets } from './createTweet.js';
+import { stateButton } from './stateButton.js';
+import { getUserData } from '../api/userData.js';
+
+
+// Assuming getUserData and renderTweets return Promises.
+function createHomeComponent() {
     const homeComponent = document.createElement('div');
+    homeComponent.classList.add('home-component');
 
-    const homeName = document.createElement('p');
-    const userName = document.createElement('p');
-    const tweets = document.createElement('p');
+    // Prepare a container for tweets that might be fetched later
+    const tweetsContainer = document.createElement('div');
+    tweetsContainer.classList.add('tweets-container');
+    homeComponent.appendChild(tweetsContainer);
 
-    // Set content for these elements
-    homeName.textContent = "Home";
-    userName.textContent = "Username"; // Set this based on actual user data
-    tweets.textContent = "Tweets"; // Update this to display actual tweets or relevant content
+    // Prepare the tweet form
+    const tweetFormComponent = createTweetForm(tweetsContainer); // Assuming createTweetForm() returns a DOM element immediately
+    homeComponent.appendChild(tweetFormComponent);
 
-    // Append all created elements to the homeComponent container
-    homeComponent.appendChild(homeName);
-    homeComponent.appendChild(userName);
-    homeComponent.appendChild(tweets);
+    // Profile page button
+    const profilePageSwitch = stateButton('profile');
+    homeComponent.appendChild(profilePageSwitch);
 
-    // Return the container with all its child elements
+    // Refresh feed button
+    const refreshFeedButton = document.createElement('button');
+    refreshFeedButton.textContent = "Refresh Feed";
+    refreshFeedButton.addEventListener('click', () => renderTweets(tweetsContainer));
+    homeComponent.appendChild(refreshFeedButton);
+
+    getUserData().then(userData => {
+        // Assuming userData contains { username, followers, following, profilePicture }
+        const userNameElement = document.createElement('p');
+        userNameElement.textContent = `Username: ${userData.username || 'No username'}`;
+        homeComponent.prepend(userNameElement);
+
+        
+
+        const profilePicElement = document.createElement('img');
+        profilePicElement.src = userData.profilePicture || 'default_profile_pic_url';
+        profilePicElement.alt = 'Profile Picture';
+        profilePicElement.style.width = '100px'; // Example styling
+        homeComponent.prepend(profilePicElement);
+    }).catch(error => console.error("Error fetching user data:", error));
+
+    // Initial call to fetch and display tweets
+    renderTweets(tweetsContainer);
+
     return homeComponent;
 }
+
 
 export { createHomeComponent };

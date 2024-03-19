@@ -1,11 +1,22 @@
 
 // state.js
+// Assuming AppState is your state management object
+
+/*
+let state = {
+    isLoggedIn: true,
+    user: {
+        uid: 'RPFzns7JU7RRbLMxhyzX5maTIMk1'
+    },
+    currentComponent: 'home', // Assuming 'home' is the state indicating the home page should be displayed
+};
+*/
+
 let state = {
     isLoggedIn: false,
     user: null,
-    currentComponent: 'login', // 'login', 'newUser', 'home'
-};
-
+    currentComponent: 'login'
+}
 
 // An array to keep track of functions (subscribers) that want to be notified when the state changes.
 let subscribers = [];

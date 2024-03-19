@@ -1,7 +1,15 @@
-// Import the functions you need from the SDKs you need
+// Import the Firebase core App
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
 
+// Import Firebase Authentication
+import { getAuth, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+
+
+// Import Firestore
+import { getFirestore } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+// Optionally, import the Realtime Database if needed
+import { getDatabase } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
 
 
 
@@ -18,6 +26,10 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
 
-export { app, auth }
+// Initialize Firebase services
+const auth = getAuth(app);
+const dbFirestore = getFirestore(app);
+const dbRealtime = getDatabase(app); // If using Realtime Database
+
+export { app, auth, dbFirestore, dbRealtime }

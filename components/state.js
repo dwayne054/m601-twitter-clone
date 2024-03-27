@@ -15,7 +15,7 @@ let state = {
 let state = {
     isLoggedIn: false,
     user: null,
-    currentComponent: 'login'
+    currentComponent: 'login',
 }
 
 // An array to keep track of functions (subscribers) that want to be notified when the state changes.

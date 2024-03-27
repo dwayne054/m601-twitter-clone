@@ -1,0 +1,315 @@
+.edit-textarea {
+    width: 100%;
+    
+    overflow-y: hidden; /* Hide vertical scrollbar */
+    resize: none; /* Disable manual resizing */
+
+    border-style: none;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 15px;
+    color: var(--twitter-gray-dark);
+    margin: 0px;
+    padding: 0px;
+
+}
+
+.edit-tweet-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    overflow-wrap: break-word;
+
+}
+
+
+
+.tweet-content {
+    color:var(--twitter-gray-dark);
+    margin-top: 5px;
+    overflow-wrap: break-word;
+    max-width:100%;
+    margin-bottom: 10px
+}
+
+
+.menu-tweet-button {
+    width: 10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    background-color: transparent;
+    border-radius: 10px;
+    border: none;
+    color: var(--twitter-orange);
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 15px;
+    
+    cursor: pointer;
+}
+
+.tweets-container {
+
+    padding-bottom: 30px;
+}
+
+/* user tweet content */
+.post-info-user-tweet {
+    display: flex;
+    justify-content: space-between;
+}
+
+.post-info-tweet {
+  justify-items: center;
+  align-items: center;
+}
+
+.option-tweet-button {
+    height: 30px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.options-image {
+    height: 100%;
+    width: 100%;
+    border: none;
+
+}
+
+/* pop up menu */
+.post-info-right {
+    position: relative;
+}
+
+.option-popup-container {
+    position: absolute;
+    top: 9px;
+    right: -12px;
+    
+    width: 150px;
+    background-color: var(--twitter-white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    border-radius: 6px;
+    z-index: 6;
+    margin-bottom: 20px;
+
+}
+.tweet-img-option-div{
+    width: 20%;
+}
+.tweet-text-option-div {
+    width: 80%;
+    display: flex;
+    justify-content: baseline;
+ 
+}
+
+.tweet-option-button {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin: 10px;
+}
+.tweet-delete-button {
+    color: var(--twitter-red);
+}
+
+.tweet-edit-img {
+    width: 100%;
+    height: 100%;
+    
+}
+
+
+/* pop up menu end  */
+
+.no-tweets-message {
+    padding: 12px;
+    color: var(--twitter-gray-medium);
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+/* profile header styling */
+.profile-header-div {
+    width: 100%;
+    
+    
+}
+
+.nav-container-profile-page {
+    display: flex;
+    flex-direction: row;
+
+    border: 2px solid var(--twitter-gray-light);
+    padding: 12px;
+   
+    
+}
+
+.back-button-nav {
+    background-color: transparent;
+    border: none;
+   
+    cursor: pointer;
+}
+
+.back-button-img {
+    height: 30px;
+}
+
+.user-background{
+    background-color: var(--twitter-blue);
+    height: 180px;
+    width: 100%;
+    border-left: 2px solid var(--twitter-gray-light);
+    border-right: 2px solid var(--twitter-gray-light);
+}
+
+.profile-nav-context h1 {
+    color: var(--twitter-gray-dark);
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 21px;
+}
+.profile-nav-context p{
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    margin-top: 4px;
+    font-size: 14px;
+}
+.profile-content {
+    border-left: 2px solid var(--twitter-gray-light);
+    border-right: 2px solid var(--twitter-gray-light);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+
+}
+
+.profile-pic-header {
+    height: 120px;
+    width: 120px;
+    object-fit: cover;
+    border-radius: 60px;
+    border: 2px solid var(--twitter-gray-light);
+    position: absolute;
+    top: -60px;
+    left: 12px;
+    background-color: var(--twitter-white);
+}
+
+
+/*  edit profile button */
+
+.edit-profile-container {
+    padding: 12px;
+    display: flex;
+    justify-content: flex-end;
+}
+.edit-profile-button{
+    width: 20%;
+    padding: 6px;
+    border: 1px solid var(--twitter-blue);
+    background-color: var(--twitter-white);
+    color: var(--twitter-blue);
+    border-radius: 50px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    margin-top: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    justify-self: flex-end;
+    
+}
+
+/* user-name and display name on header */
+.name-container {
+    
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+}
+
+.name-container h1 {
+    color: var(--twitter-gray-dark);
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 21px;
+}
+.name-container p {
+    color: var(--twitter-gray-medium);
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+
+   
+}
+
+/* description on profile */
+
+.description-div {
+    width: 100%;
+   
+}
+.description-text {
+    padding: 0px 12px 6px 12px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    margin-top: 4px;
+    font-size: 14px;
+}
+
+/*  following on header */
+.count-div {
+    display: flex;
+    flex-direction: row;
+}
+
+
+.follow-div {
+    display: flex;
+    padding: 12px;
+}
+
+.follow-div h1 {
+    color: var(--twitter-gray-dark);
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    
+}
+
+.follow-div p {
+    color: var(--twitter-gray-medium);
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    margin-left: 6px;
+}

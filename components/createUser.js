@@ -13,7 +13,7 @@ function createUserComponent() {
     const form = document.createElement('form');
     form.className = "login-form";
     
-    const profilePicPlaceholder = document.createElement('img'); // Changed to 'img' for displaying images
+    const profilePicPlaceholder = document.createElement('img'); //  for displaying images
     profilePicPlaceholder.src = "https://firebasestorage.googleapis.com/v0/b/twitter-clone-ec696.appspot.com/o/defaultPfp.svg?alt=media&token=784f6b42-3ba1-40db-9777-63ccbbb03099";
     profilePicPlaceholder.className = "profile-pic-placeholder"; // Add a class for styling
     form.appendChild(profilePicPlaceholder);
@@ -28,7 +28,7 @@ function createUserComponent() {
     
     
     const displayNameInput = createInputField('text', 'name', 'Username');
-    const emailInput = createInputField('email', 'email', 'Email'); // Reuse this if you want to keep the email input filled
+    const emailInput = createInputField('email', 'email', 'Email');
     const passwordInput = createInputField('password', 'password', 'Password');
     
     
@@ -75,7 +75,7 @@ function createUserComponent() {
 
    
     
-    //the text iis how the stateButton knows which button it is
+    //the text is how the stateButton knows which button it is
     signupTextSpan.appendChild(stateButton('Login','switch-form-button'))
 
 
@@ -92,27 +92,90 @@ function createUserComponent() {
         createUser(emailInput.input.value, passwordInput.input.value, displayNameInput.input.value, file);
     });
     
-    // Corrected function with proper Firestore data structure
+    // Create user 
     function createUser(email, password, displayName, imgFile) {
-        createUserWithEmailAndPassword(auth, email, password)
-            .then(userCredential => {
-                let downloadURLPromise;
-                if (imgFile) {
-                    const storage = getStorage();
-                    const storagePath = `profilePictures/${userCredential.user.uid}`;
-                    const imageRef = storageRef(storage, storagePath);
-                    downloadURLPromise = uploadBytes(imageRef, imgFile).then(snapshot => getDownloadURL(snapshot.ref));
-                } else {
-                    downloadURLPromise = Promise.resolve("https://firebasestorage.googleapis.com/v0/b/twitter-clone-ec696.appspot.com/o/defaultPfp.svg?alt=media&token=784f6b42-3ba1-40db-9777-63ccbbb03099"); // Default URL or logic for handling no image
-                }
-    
+    createUserWithEmailAndPassword(auth, email, password)
+        .then(userCredential => {
+            let downloadURLPromise;
+
+            // Resize image if imgFile is provided
+            if (imgFile) {
+                const MAX_SIZE = 250; // Maximum size for both width and height
+
+                // Create an image element to load the selected image
+                const img = new Image();
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    let width = img.width;
+                    let height = img.height;
+
+                    // Resize the image if it exceeds the maximum size
+                    if (width > MAX_SIZE || height > MAX_SIZE) {
+                        if (width > height) {
+                            height *= MAX_SIZE / width;
+                            width = MAX_SIZE;
+                        } else {
+                            width *= MAX_SIZE / height;
+                            height = MAX_SIZE;
+                        }
+                    }
+
+                    // Set canvas dimensions
+                    canvas.width = width;
+                    canvas.height = height;
+
+                    // Draw the image on the canvas
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, width, height);
+
+                    // Convert canvas to Blob
+                    canvas.toBlob(function(blob) {
+                        const storage = getStorage();
+                        const storagePath = `profilePictures/${userCredential.user.uid}`;
+                        const imageRef = storageRef(storage, storagePath);
+                        
+                        // Upload resized image
+                        downloadURLPromise = uploadBytes(imageRef, blob).then(snapshot => getDownloadURL(snapshot.ref));
+                        
+                        // Once image is uploaded, update Firestore document
+                        downloadURLPromise.then(downloadURL => {
+                            // Include name property, defaulting to displayName if name isn't provided separately
+                            const name = displayName;
+                            // Update Firestore document with all user info, including name and resized profile picture
+                            return setDoc(doc(dbFirestore, "users", userCredential.user.uid), {
+                                username: displayName,
+                                name: name,
+                                email: userCredential.user.email,
+                                profilePicture: downloadURL,
+                                likedTweets: [],
+                                following: [],
+                                followers: []
+                            });
+                        }).then(() => {
+                            console.log("User added to Firestore successfully.");
+                            handleUserAuth(null, userCredential);
+                        }).catch((error) => {
+                            console.error("Failed to add user to Firestore:", error);
+                            handleUserAuth(error);
+                        });
+                    }, 'image/jpeg');
+                };
+
+                // Load the selected image
+                img.src = URL.createObjectURL(imgFile);
+            } else {
+                // If no image provided, use default profile picture
+                downloadURLPromise = Promise.resolve("https://firebasestorage.googleapis.com/v0/b/twitter-clone-ec696.appspot.com/o/defaultPfp.svg?alt=media&token=784f6b42-3ba1-40db-9777-63ccbbb03099");
+
+                // Update Firestore document with default profile picture
                 downloadURLPromise.then(downloadURL => {
-                    // Update Firestore document with all user info
+                    const name = displayName;
                     return setDoc(doc(dbFirestore, "users", userCredential.user.uid), {
                         username: displayName,
+                        name: name,
                         email: userCredential.user.email,
                         profilePicture: downloadURL,
-                        Likedtweets: [],
+                        likedTweets: [],
                         following: [],
                         followers: []
                     });
@@ -123,11 +186,14 @@ function createUserComponent() {
                     console.error("Failed to add user to Firestore:", error);
                     handleUserAuth(error);
                 });
-            }).catch((creationError) => {
-                console.error("Error creating new user:", creationError);
-                handleUserAuth(creationError);
-            });
-    }
+            }
+        }).catch((creationError) => {
+            console.error("Error creating new user:", creationError);
+            handleUserAuth(creationError);
+        });
+}
+
+    
     
     
     function handleUserAuth(error, userCredential = null) {
@@ -137,10 +203,15 @@ function createUserComponent() {
             getDoc(userRef).then(docSnapshot => {
                 if (docSnapshot.exists()) {
                     const userProfile = docSnapshot.data();
-                    console.log("Logged in as", userProfile.username || "No Name", userProfile);
+                    //console.log("Logged in as", userProfile.username || "No Name", userProfile);
         
-                    // Use userProfile data as needed in your application
+                    // Use userProfile data 
                     AppState.setState({ isLoggedIn: true, user: { ...userCredential.user, ...userProfile }, currentComponent: 'home' });
+                    
+                    //set local storage
+                    localStorage.setItem("LoggedInUser", userCredential.user.uid);
+               
+
                     // Update UI based on AppState or userProfile
                 } else {
                     console.error("User profile not found in Firestore.");
@@ -177,7 +248,6 @@ function createUserComponent() {
                     case 'auth/weak-password':
                         errorMessageText = "Password is too weak. Please use a stronger password.";
                         break;
-                    // Add more error codes as needed
                     default:
                         console.error("Authentication failed:", error.message);
                         break;

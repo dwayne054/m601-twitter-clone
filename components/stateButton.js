@@ -3,10 +3,6 @@ import { updateUI } from "../app.js"
 
 
 
-// TODO later we have to add an id to each button to be able to tell which on eis being clicked on
-
-
-
 function stateButton(text, idName) {
     const button = document.createElement('button');
     button.id = idName
@@ -37,13 +33,13 @@ function stateButton(text, idName) {
             console.log(text)
             updateUI()
 
-        } else if (state.currentComponent === "profile" && state.isLoggedIn === true && text === "logout") {
+        } else if ( state.isLoggedIn === true && button.id === "logout-button") {
             
             // Clear user session from local storage
-            localStorage.removeItem('loggedInUser');
+            localStorage.setItem("LoggedInUser", "");
+          
             // Update AppState for logout
             AppState.setState({ currentComponent: 'login', isLoggedIn: false, user: null });
-            localStorage.setItem("LoggedInUser", "");
             console.log(text);
             updateUI();
 

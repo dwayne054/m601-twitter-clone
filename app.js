@@ -16,6 +16,7 @@ function logUser(user) {
 
 
 
+
 export function updateUI() {
     while (appContainer.firstChild) {
         appContainer.removeChild(appContainer.firstChild);
@@ -23,54 +24,49 @@ export function updateUI() {
 
     const state = AppState.getState();
 
-    if (state.currentComponent === 'home') {
-        const homeComponent = createHomeComponent()
-        appContainer.appendChild(homeComponent)
-        //console.log(AppState.getState(state.user.uid))
-    } else if (state.currentComponent === 'profile') {
-        // case for profile component
-        const profileComponent = profilePage(); // Synchronously create the profile page
-        appContainer.appendChild(profileComponent);
-    } else {
-        let component;
-        if (state.currentComponent === 'login') {
-            component = loginFormComponent();
-        } else if (state.currentComponent === 'newUser') {
-            component = createUserComponent();
-        }
-
-        if (component) {
-            appContainer.appendChild(component);
-        } else {
-            console.error('Error in screen change: Unknown component');
-        }
+    switch(state.currentComponent) {
+        case 'home':
+            appContainer.appendChild(createHomeComponent());
+            break;
+        case 'profile':
+            appContainer.appendChild(profilePage());
+            break;
+        case 'login':
+            appContainer.appendChild(loginFormComponent());
+            break;
+        case 'newUser':
+            appContainer.appendChild(createUserComponent());
+            break;
+        default:
+            console.error('Unknown component:', state.currentComponent);
+            // Default component
     }
 }
 
-
-function init() {
-    // Initialization
-    const storedUid = localStorage.getItem('LoggedInUser');
-    
-    if (storedUid) {
-        // There's a UID stored, implying the user is logged in
-        console.log(storedUid);
+function setUserState(uid) {
+    if (uid) {
         AppState.setState({
-            currentComponent: 'home', // Assuming 'home' is the component to show when logged in
+            currentComponent: 'home',
             isLoggedIn: true,
-            user: { uid: storedUid } // Assuming you're only interested in UID for now
+            user: { uid }
         });
     } else {
-        // No stored UID, imply user is not logged in, start with a login or signup component
         AppState.setState({
-            currentComponent: 'login', // Or 'signup' as your app's starting point
+            currentComponent: 'login',
             isLoggedIn: false,
             user: null
         });
     }
+}
 
-    AppState.subscribe(updateUI); // Subscribe to AppState changes
-    updateUI(); // Initial UI update based on the current AppState
+
+// 
+function init() {
+    const storedUid = localStorage.getItem('LoggedInUser');
+    setUserState(storedUid && storedUid !== "undefined" && storedUid !== "" ? storedUid : null);
+
+    AppState.subscribe(updateUI);
+    updateUI();
 }
 
 init();

@@ -11,6 +11,8 @@ import { getFirestore } from "https://www.gstatic.com/firebasejs/10.8.1/firebase
 // Optionally, import the Realtime Database if needed
 import { getDatabase } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
 
+// Import Firebase Storage
+import { getStorage } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-storage.js";
 
 
 // Firebase configuration
@@ -31,5 +33,6 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const dbFirestore = getFirestore(app);
 const dbRealtime = getDatabase(app); // If using Realtime Database
-
-export { app, auth, dbFirestore, dbRealtime }
+// Initialize Firebase Storage
+const storage = getStorage(app);
+export { app, auth, dbFirestore, dbRealtime, storage }

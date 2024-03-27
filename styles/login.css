@@ -71,7 +71,7 @@
     height: 75px;
     width: 75px;
     align-self: center;
-    padding-bottom: 30px;
+    padding-bottom: 20px;
 
     background-image: url(../assets/logo.png);
     background-size: contain;
@@ -248,7 +248,9 @@
     align-self: center;
     margin-bottom: 20px;
     border-radius: 100px;
-    background-color: white;
+    
+    border: 2px solid var(--twitter-gray-light);
+
 }
 
 .upload-profile-pic-button {
@@ -290,4 +292,8 @@
     font-weight: 400;
     font-style: normal;
     color: var(--twitter-green);
+}
+
+.profile-pic-placeholder {
+    object-fit: cover;
 }

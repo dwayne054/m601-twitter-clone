@@ -13,8 +13,6 @@ function loginFormComponent() {
     const loginComponentContainer = document.createElement('div');
     loginComponentContainer.className = "login-container";
 
-
-
     const greetingBackground = document.createElement('div');
     greetingBackground.className = "greeting-background";
     loginComponentContainer.appendChild(greetingBackground);
@@ -24,7 +22,7 @@ function loginFormComponent() {
     greetingBackground.appendChild(joinTwitterContainer);
 
     const joinTwitterText = document.createElement('p');
-    joinTwitterText.textContent = "Join Today and see what's ahppening in the world right now"
+    joinTwitterText.textContent = "Join Today! See what's happening in the world right now"
     joinTwitterText.className = "join-twitter-text";
     joinTwitterContainer.appendChild(joinTwitterText);
 
@@ -141,11 +139,11 @@ function loginFormComponent() {
         if (!error && userCredential) {
             // Fetch the user profile from Firestore
             const userRef = doc(dbFirestore, "users", userCredential.user.uid);
+            
             getDoc(userRef).then(docSnapshot => {
                 if (docSnapshot.exists()) {
                     const userProfile = docSnapshot.data();
-                    //console.log("Logged in as", userProfile.username || "No Name", userProfile);
-
+    
                     // Merge Firestore user data with the auth user data
                     const mergedUserProfile = {
                         ...userCredential.user,
@@ -153,48 +151,51 @@ function loginFormComponent() {
                         displayName: userProfile.username || userCredential.user.displayName,
                         photoURL: userProfile.profilePicture || userCredential.user.photoURL
                     };
-
-                    
-
+    
                     // Use merged user profile data in your application as needed
                     AppState.setState({ isLoggedIn: true, user: mergedUserProfile, currentComponent: 'home' });
-                    console.log(mergedUserProfile)
+                    // console.log(mergedUserProfile);
                     localStorage.setItem("LoggedInUser", mergedUserProfile.uid);
-
-                    // Call updateUI or similar function to refresh the UI with the user's data
+    
                 } else {
-                    
-        
-                    // Extract message inside parentheses
-                    const messageMatch = error.message.match(/\((.*)\)/);
-                    const message = messageMatch ? messageMatch[1] : "An unknown error occurred.";
-
-                    errorElement.textContent = message;
-                    errorElement.style.display = 'block'; // Show the error message
+                    // Handle case where user profile does not exist in Firestore
+                    errorElement.textContent = "User profile not found. Please complete your profile setup.";
+                    errorElement.style.display = 'block';
                 }
-            }).catch((error) => {
-                
-        
-                // Extract message inside parentheses
-                const messageMatch = error.message.match(/\((.*)\)/);
-                const message = messageMatch ? messageMatch[1] : "An unknown error occurred.";
-
-                errorElement.textContent = message;
-                errorElement.style.display = 'block'; // Show the error message
+            }).catch(fetchError => {
+                // Handle errors fetching user profile from Firestore
+                console.error("Error fetching user profile:", fetchError);
+                errorElement.textContent = "Failed to load user profile. Please try again.";
+                errorElement.style.display = 'block';
             });
-        } else {
-            
-        
-            // Extract message inside parentheses
-            const messageMatch = error.message.match(/\((.*)\)/);
-            const message = messageMatch ? messageMatch[1] : "An unknown error occurred.";
-
-            errorElement.textContent = message;
-            errorElement.style.display = 'block'; // Show the error message
+        } else if (error) {
+            // Map Firebase auth error codes to user-friendly messages
+            let friendlyMessage;
+            switch (error.code) {
+                case 'auth/invalid-email':
+                    friendlyMessage = "The email address is invalid. Please check and try again.";
+                    break;
+                case 'auth/user-disabled':
+                    friendlyMessage = "This account has been disabled. If this is unexpected, please contact support.";
+                    break;
+                case 'auth/user-not-found':
+                    friendlyMessage = "No account found with this email. Would you like to sign up instead?";
+                    break;
+                case 'auth/wrong-password':
+                    friendlyMessage = "Incorrect password. Please try again or reset your password if you've forgotten it.";
+                    break;
+                case 'auth/too-many-requests':
+                    friendlyMessage = "We've detected too many login attempts. Please wait a moment before trying again.";
+                    break;
+                default:
+                    friendlyMessage = "An unexpected error occurred. Please try again.";
+                    console.error("Unhandled login error:", error);
+            }
+            errorElement.textContent = friendlyMessage;
+            errorElement.style.display = 'block';
         }
     }
-
-    
+  
     return loginComponentContainer;
 }
 

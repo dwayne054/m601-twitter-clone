@@ -1,7 +1,7 @@
 .login-container{
     display: flex;
     flex-direction: row;
-    width: 60%;
+    width: 50%;
     height: 60%;
     justify-content: center;
     align-self: center;
@@ -114,6 +114,7 @@
     font-style: normal;
     font-size: 15px;
     cursor: pointer;
+    outline: none;
 
 
 }
@@ -129,7 +130,7 @@
     font-size: 15px;
     cursor: pointer;
 
-
+    outline: none;
 }
 
 
@@ -155,12 +156,13 @@
     margin-top: 40px;
     font-size: 15px;
     cursor: pointer;
+    transition: .1s ease-in-out;
 }
 
 
 
-.login-button :hover {
-
+.login-button:hover {
+    background-color: var(--twitter-blue-dark);
 }
 
 
@@ -214,6 +216,11 @@
     font-size: 15px;
     cursor: pointer;
 }
+.reset-password-button:hover {
+    background-color: var(--twitter-blue-dark);
+
+}
+
 
 .back-to-login-link {
     padding-top: 30px;
@@ -262,6 +269,11 @@
     padding: 10px;
     cursor: pointer;
     text-transform: uppercase;
+    transition: .1s ease-in-out;
+}
+.upload-profile-pic-button:hover{
+    background-color:var(--twitter-blue);
+    color: var(--twitter-white);
 }
 
 .hidden-file-input {
@@ -296,4 +308,81 @@
 
 .profile-pic-placeholder {
     object-fit: cover;
+}
+
+
+
+
+@media only screen and (max-width: 600px) {
+    /* CSS rules for smartphones */
+    .greeting-background{
+        display: none;
+    }
+    .login-container {
+        width:90%;
+        height: 80%;
+        background-color:transparent;
+    }
+    .form-container{
+        width: 100%;
+        border-radius: 15px;
+
+    }
+    .login-form h1 {
+        padding-bottom: 0px;
+        font-size:24px ;
+    }
+    .logo-container{
+        height: 50px;
+        width: 50px;
+    }
+    
+}
+  
+/* For portrait tablets */
+@media only screen and (min-width: 601px) and (max-width: 768px) {
+    /* CSS rules for portrait tablets */
+    /* CSS rules for smartphones */
+    .greeting-background{
+        display: none;
+    }
+    .login-container {
+        width:90%;
+        height: fit-content;
+        padding: 10px;
+        background-color:transparent;
+    }
+    .form-container{
+        width: 100%;
+    
+    }
+    
+}
+  
+/* For landscape tablets and medium devices */
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+    /* CSS rules for landscape tablets and medium devices */
+    .greeting-background{
+        display: none;
+    }
+    .login-container {
+        width:90%;
+        height: fit-content;
+        background-color:transparent;
+    }
+    .form-container{
+        width: 100%;
+        border-radius: 15px 20px 20px 15px;
+        padding: 10px 0 10px 0;
+    }
+}
+  
+/* For desktops */
+@media only screen and (min-width: 1025px) {
+    /* CSS rules for desktops */
+}
+  
+/* For large desktops */
+@media only screen and (min-width: 1200px) {
+    /* CSS rules for large desktops */
 }

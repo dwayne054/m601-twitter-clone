@@ -6,15 +6,6 @@ import AppState from "./components/state.js";
 
 export const appContainer = document.getElementById('app-container');
 
-function logUser(user) {
-    // Update AppState
-    AppState.setState({ currentComponent: 'home', isLoggedIn: true, user: user });
-    // Update local storage
-    localStorage.setItem('loggedInUser', JSON.stringify(user));
-    updateUI();
-}
-
-
 
 
 export function updateUI() {
@@ -40,8 +31,35 @@ export function updateUI() {
         default:
             console.error('Unknown component:', state.currentComponent);
             // Default component
+            appContainer.appendChild(loginFormComponent());
+
     }
 }
+
+export function showAlert(message, duration = 3000) {
+    const alertContainer = document.createElement('div');
+    alertContainer.className = 'custom-alert';
+    
+    const alertMessage = document.createElement('p');
+    alertMessage.textContent = message;
+
+    const alertImage = document.createElement('img')
+    alertImage.src = './assets/check1.svg';
+
+    
+    alertContainer.appendChild(alertMessage);
+    alertContainer.appendChild(alertImage)
+
+    document.body.appendChild(alertContainer);
+    
+
+    setTimeout(() => {
+        alertContainer.remove();
+    }, duration);
+
+}
+
+
 
 function setUserState(uid) {
     if (uid) {
@@ -60,7 +78,7 @@ function setUserState(uid) {
 }
 
 
-// 
+// initialize app 
 function init() {
     const storedUid = localStorage.getItem('LoggedInUser');
     setUserState(storedUid && storedUid !== "undefined" && storedUid !== "" ? storedUid : null);

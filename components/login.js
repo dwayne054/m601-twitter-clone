@@ -5,6 +5,7 @@ import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-
 import { dbFirestore } from "../api/firebase.js"; // Ensure you have exported dbFirestore correctly from your firebase.js file
 import { stateButton } from "./stateButton.js";
 import { createUserComponent } from "./createUser.js";
+import { showAlert } from "../app.js";
 
 
 
@@ -154,7 +155,7 @@ function loginFormComponent() {
     
                     // Use merged user profile data in your application as needed
                     AppState.setState({ isLoggedIn: true, user: mergedUserProfile, currentComponent: 'home' });
-                    // console.log(mergedUserProfile);
+                    showAlert(`Successfully logged in as ${mergedUserProfile.displayName}`)
                     localStorage.setItem("LoggedInUser", mergedUserProfile.uid);
     
                 } else {

@@ -72,16 +72,24 @@
 
 .option-tweet-button {
     height: 30px;
+ 
     background-color: transparent;
     border: none;
     cursor: pointer;
 }
 
+
+
 .options-image {
     height: 100%;
     width: 100%;
     border: none;
+   transition: .1s ease-in-out;
 
+}
+.options-image:hover{
+    background-color: var(--twitter-gray-light);
+    border-radius: 15px;
 }
 
 /* pop up menu */
@@ -117,20 +125,42 @@
 
 .tweet-option-button {
     width: 100%;
-
+    height: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: flex-start;
+    
     background-color: transparent;
     border: none;
     cursor: pointer;
-    margin: 10px;
+   
 }
 .tweet-delete-button {
     color: var(--twitter-red);
+    align-self: center;
+    justify-self: center;
+    height: 100%;
 }
+.tweet-delete-div {
+    background-color: transparent;
+    padding: 10px 0 10px 0;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    border-radius: 6px 6px 0 0;
+}
+.tweet-delete-div:hover {
+    background-color:var(--twitter-gray-light);
+}
+.tweet-edit-div {
+    padding: 10px 0 10px 0;
+    border-radius:0 0 6px 6px;
 
+}
+.tweet-edit-div:hover {
+    background-color:var(--twitter-gray-light);
+
+}
 .tweet-edit-img {
     width: 100%;
     height: 100%;
@@ -175,6 +205,11 @@
 
 .back-button-img {
     height: 30px;
+    transition: .1s ease-in-out;
+}
+.back-button-img:hover {
+    background-color: var(--twitter-gray-light);
+    border-radius: 15px;
 }
 
 .user-background{
@@ -243,6 +278,12 @@
     font-size: 14px;
     cursor: pointer;
     justify-self: flex-end;
+    transition: .1s ease-in-out;
+}
+.edit-profile-button:hover{
+  
+    background-color: var(--twitter-blue);
+    color: var(--twitter-white);
     
 }
 
@@ -312,4 +353,36 @@
     font-weight: 400;
     font-style: normal;
     margin-left: 6px;
+}
+
+
+@media only screen and (max-width: 600px) {
+    /* CSS rules for smartphones */
+    .nav-container-profile-page {
+        border: none;
+    }
+    .edit-profile-button {
+        width:30% ;
+    }
+}
+  
+/* For portrait tablets */
+@media only screen and (min-width: 601px) and (max-width: 768px) {
+    /* CSS rules for portrait tablets */
+    
+}
+  
+  /* For landscape tablets and medium devices */
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+    /* CSS rules for landscape tablets and medium devices */
+}
+  
+  /* For desktops */
+@media only screen and (min-width: 1025px) {
+    /* CSS rules for desktops */
+}
+  
+  /* For large desktops */
+@media only screen and (min-width: 1200px) {
+    /* CSS rules for large desktops */
 }

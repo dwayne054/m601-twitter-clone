@@ -6,7 +6,7 @@ import { doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.1/f
 import { stateButton } from "./stateButton.js";
 import AppState from "./state.js";
 import { dbFirestore } from "../api/firebase.js";
-
+import { showAlert } from "../app.js";
 function createUserComponent() {
     
     
@@ -210,6 +210,10 @@ function createUserComponent() {
                     
                     //set local storage
                     localStorage.setItem("LoggedInUser", userCredential.user.uid);
+
+                    showAlert(`Successfully logged in as ${userProfile.name}`)
+                  
+
                
 
                     // Update UI based on AppState or userProfile

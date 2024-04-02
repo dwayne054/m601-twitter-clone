@@ -33,7 +33,7 @@ function stateButton(text, idName) {
             console.log(text)
             updateUI()
 
-        } else if ( state.isLoggedIn === true && button.id === "logout-button") {
+        } else if ( state.isLoggedIn === true && button.id === "logout-button-modal") {
             
             // Clear user session from local storage
             localStorage.setItem("LoggedInUser", "");

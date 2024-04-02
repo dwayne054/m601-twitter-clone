@@ -1,6 +1,8 @@
 import { getFirestore, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-storage.js";
 import AppState from "./state.js";
+import { showAlert } from "../app.js";
+import { showLogoutModal } from "./logoutModal.js";
 
 export function showProfileEditModal(userData ,profileLink) {
     const modalContainer = document.createElement('div');
@@ -40,6 +42,7 @@ export function showProfileEditModal(userData ,profileLink) {
 
     const saveButton = document.createElement('button');
     saveButton.textContent = 'Save';
+    saveButton.className = "save-button-edit-modal"
     saveButton.type = 'button';
     rightNavDiv.appendChild(saveButton);
 
@@ -63,6 +66,7 @@ export function showProfileEditModal(userData ,profileLink) {
 
     const profilePicButton = document.createElement('button');
     profilePicButton.textContent = 'Upload Image';
+    profilePicButton.className = 'upload-image-button-profile'
     profilePicButton.type = 'button'; // Set type to button to prevent form submission
     profilePicButton.onclick = function() {
         profilePicInput.click(); // Trigger click event of input when button is clicked
@@ -71,7 +75,7 @@ export function showProfileEditModal(userData ,profileLink) {
 
     // Display Name Field
     const nameInputLabel = document.createElement('label');
-    nameInputLabel.textContent = 'Full Name:';
+    nameInputLabel.textContent = 'Name';
     nameInputLabel.className = 'edit-profile-label';
     const nameInput = createInputField('text', 'Full Name', userData.name);
     nameInputLabel.appendChild(nameInput);
@@ -89,11 +93,22 @@ export function showProfileEditModal(userData ,profileLink) {
 
     // Description Field
     const descriptionInputLabel = document.createElement('label');
-    descriptionInputLabel.textContent = 'Description:';
+    descriptionInputLabel.textContent = 'Description';
     descriptionInputLabel.className = 'edit-profile-label';
     const descriptionInput = createInputField('text', 'Description', userData.description || '');
     descriptionInputLabel.appendChild(descriptionInput);
     form.appendChild(descriptionInputLabel);
+
+
+    //Logout button
+    const logoutEditProfile = document.createElement('button');
+    logoutEditProfile.textContent = "logout";
+    logoutEditProfile.className = 'logout-edit-profile';
+    logoutEditProfile.addEventListener('click' , ()=> {
+        modalContainer.remove()
+        showLogoutModal()
+    })
+    form.appendChild(logoutEditProfile)
 
 
 
@@ -139,7 +154,9 @@ export function showProfileEditModal(userData ,profileLink) {
     
         await updateDoc(userRef, updatePayload);
         modalContainer.remove(); // Close the modal after saving
-        profileLink.click();
+        const homeTab = document.querySelector('#home-button')
+        homeTab.click()
+        showAlert('Profile updated')
     });
 
     cancelButton.addEventListener('click', () => {

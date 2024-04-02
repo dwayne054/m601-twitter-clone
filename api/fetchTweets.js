@@ -1,5 +1,5 @@
 import { getFirestore, query, collection, where, getDocs, doc, getDoc, orderBy, limit as firestoreLimit, startAfter } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
-import { dbFirestore } from "./firebase.js"; // Correct import for your Firestore instance
+import { dbFirestore } from "./firebase.js"; 
 
 
 

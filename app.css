@@ -17,8 +17,10 @@
   --twitter-gray-dark-dark: #0A0C0D; /* Darker shade of dark gray */
     
   /* Accent Colors */
-  --twitter-green: #17BF63;
+  
+  --twitter-green: #17BF63; /* Twitter green */
   --twitter-green-dark: #148A50; /* Darker shade of green */
+  --twitter-green-light: #65ED97; /* Lighter shade of green */
   --twitter-red: #E0245E;
   --twitter-red-dark: #B81E4A; /* Darker shade of red */
   --twitter-orange: #FF991F;
@@ -110,4 +112,60 @@ body {
 
 #undefined {
 	background-color: red;
+}
+
+
+.custom-alert {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--twitter-green-light);
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+
+}
+.custom-alert p {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 15px;
+  color: var(--twitter-green);
+  align-self: center;
+}
+
+.custom-alert img {
+height: 45px;
+
+}
+
+
+@media only screen and (max-width: 600px) {
+  /* CSS rules for smartphones */
+}
+
+/* For portrait tablets */
+@media only screen and (min-width: 601px) and (max-width: 768px) {
+  /* CSS rules for portrait tablets */
+}
+
+/* For landscape tablets and medium devices */
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+  /* CSS rules for landscape tablets and medium devices */
+}
+
+/* For desktops */
+@media only screen and (min-width: 1025px) {
+  /* CSS rules for desktops */
+}
+
+/* For large desktops */
+@media only screen and (min-width: 1200px) {
+  /* CSS rules for large desktops */
 }

@@ -1,5 +1,6 @@
 import { getFirestore, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 import { getStorage, ref as storageRef, uploadBytes, deleteObject, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-storage.js";
+import { showAlert } from "../../app.js";
 
 
 export function showEditTweetModal(tweetId, currentContent, currentImageUrl) {
@@ -42,6 +43,7 @@ export function showEditTweetModal(tweetId, currentContent, currentImageUrl) {
     
     const saveButton = document.createElement('button');
     saveButton.textContent = 'Save';
+    saveButton.className = 'save-button-edit-modal';
     saveButton.type = 'button';
     
 
@@ -94,6 +96,7 @@ export function showEditTweetModal(tweetId, currentContent, currentImageUrl) {
     imageInput.style.display = 'none'; // Hide the input element
 
     const imageButton = document.createElement('button');
+    imageButton.className = "upload-image-button"
     imageButton.textContent = 'Upload Image';
     imageButton.type = 'button'; // Set type to button to prevent form submission
     imageButton.onclick = function() {
@@ -183,7 +186,13 @@ export function showEditTweetModal(tweetId, currentContent, currentImageUrl) {
         }
     
         await updateDoc(tweetDocRef, updates);
+
+        const homeTab = document.querySelector('#home-button');
+        
+        homeTab.click()
+ 
         modalContainer.remove(); // Close the modal after saving
+        showAlert('Tweet Successfully Updated', 3000)
     });
     
 

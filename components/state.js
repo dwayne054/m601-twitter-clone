@@ -1,16 +1,4 @@
 
-// state.js
-// Assuming AppState is your state management object
-
-/*
-let state = {
-    isLoggedIn: true,
-    user: {
-        uid: 'RPFzns7JU7RRbLMxhyzX5maTIMk1'
-    },
-    currentComponent: 'home', // Assuming 'home' is the state indicating the home page should be displayed
-};
-*/
 
 let state = {
     isLoggedIn: false,
@@ -22,14 +10,14 @@ let state = {
 let subscribers = [];
 
 const AppState = {
-    // This is where the functionality of your state management is defined.
+    // This is where the functionality of state management is defined.
     getState: () => state,
     // A method to get the current state. It returns the state object.
     setState: (newState) => {
         state = { ...state, ...newState };
         AppState.notifySubscribers();
     },
-    // Allows components or other parts of your application to subscribe to state changes.
+    // Allows components or other parts of the application to subscribe to state changes.
     subscribe: (callback) => {
         subscribers.push(callback);
     },

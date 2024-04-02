@@ -65,7 +65,7 @@
     width: 50px;
     border-radius: 50px;
     border: 2px solid var(--twitter-gray-light);
-    
+    object-fit: cover;
 }
 
 
@@ -153,13 +153,21 @@
 .follow {
     background-color:var(--twitter-blue);
     color: white;
+    transition: .1s ease-in-out;
     
+}
+.follow:hover {
+    background-color: var(--twitter-blue-dark);
 }
 
 .unfollow {
     background-color: var(--twitter-gray-medium);
     color: white;
+    transition: .1s ease-in-out;
+}
 
+.unfollow:hover {
+    background-color: var(--twitter-gray-medium-dark);
 }
 
 
@@ -190,14 +198,18 @@
 
 }
 
-.tweet-form-container form img {
-   
-    
+.attach-image-button {
+    transition: all 0.3s ease-in-out; /* Apply transition to all properties over 0.3 seconds with ease-in-out timing function */
+}
+
+.form-button-container {
+    display: flex;
+
 }
 
 .form-input-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     /*justify-content: space-between; */
 }
 .form-input-container textarea{
@@ -241,9 +253,31 @@ textarea:focus {
     height: 50px;
     width: 50px;
     object-fit: cover;
-    border-radius: 50px;
-    border: 2px solid var(--twitter-gray-light);
+    border-radius: 25px;
+
     
+}
+
+
+/* upload button for the modal */
+.upload-button-modal {
+    font-family: "Roboto", sans-serif;
+
+    font-weight: 500;
+    font-style: normal;
+    font-size: 14px;
+    background-color: var(--twitter-gray-light-dark);
+    color: var(--twitter-gray-medium);
+    border: none;
+    border-radius: 50px;
+    padding: 6px 18px 6px 18px;
+    cursor:default;
+    transition: .3s ease-in-out;
+}
+
+.upload-button-modal:hover{
+   
+
 }
 
 
@@ -303,6 +337,12 @@ textarea:focus {
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: .3s ease-in-out;
+}
+
+#tweet-tab-button:hover {
+    background-color: var(--twitter-blue-dark);
+
 }
 
 
@@ -313,7 +353,7 @@ textarea:focus {
     cursor: pointer;
     align-self: center;
     border-radius: 50px;
-    border: 2px solid var(--twitter-gray-light);
+ 
 }
 
 .profile-info-pic-div {
@@ -394,4 +434,272 @@ textarea:focus {
     text-align: center;
     color: #65676b;
     margin: 10px 0;
+}
+
+.end-text {
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+@media only screen and (max-width: 600px) {
+    /* CSS rules for smartphones */
+    .home-component {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        position: relative; /* Add position relative to the flex container */
+    }
+
+    .middle-component {
+        width: 100%;
+    }
+
+    .tweets-container {
+       
+    }
+
+    .right-component {
+        display: none;
+    }
+
+    .tab-component {
+        position: fixed;
+        bottom: 0;
+        width: 100%; /* Ensure the width spans the entire screen */
+        background-color: #fff; /* Add a background color if needed */
+        z-index: 100; /* Ensure it's above other content */
+        height: 75px;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .tab-container{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .tab-button {
+        margin: 0px;
+    }
+    .tab-button h1 {
+        display: none;
+
+    }
+    #twitter-logo {
+        display: none;
+    }
+    .profile-info-tab-div {
+        margin: 0px;
+        width: auto;
+    }
+    .profile-info-pic-div {
+        margin: 0px;
+    }
+    #tweet-tab-button {
+        height: 50px;
+        width: 50px;
+        margin: 0px;
+    }
+    #logout-button {
+        display: none;
+    }
+
+    #profile-switch {
+        display: none;
+    }
+
+    .profile-info {
+        display: none;
+    }
+
+    .content-div .unfollow {
+        width: auto;
+    }
+    .end-text {
+        margin-bottom: 100px;
+        
+    }
+}
+
+/* For portrait tablets */
+@media only screen and (min-width: 601px) and (max-width: 768px) {
+    /* CSS rules for portrait tablets */
+ 
+    .home-component {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        position: relative; /* Add position relative to the flex container */
+    }
+
+    .middle-component {
+        width: 100%;
+    }
+
+    .tweets-container {
+       
+    }
+
+    .right-component {
+        display: none;
+    }
+
+    .tab-component {
+        position: fixed;
+        bottom: 0;
+        width: 100%; /* Ensure the width spans the entire screen */
+        background-color: #fff; /* Add a background color if needed */
+        z-index: 100; /* Ensure it's above other content */
+        height: 75px;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .tab-container{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .tab-button {
+        margin: 0px;
+    }
+    .tab-button h1 {
+        display: none;
+
+    }
+    #twitter-logo {
+        display: none;
+    }
+    .profile-info-tab-div {
+        margin: 0px;
+        width: auto;
+    }
+    .profile-info-pic-div {
+        margin: 0px;
+    }
+    #tweet-tab-button {
+        height: 50px;
+        width: 50px;
+        margin: 0px;
+    }
+    #logout-button {
+        display: none;
+    }
+
+    #profile-switch {
+        display: none;
+    }
+
+    .profile-info {
+        display: none;
+    }
+
+    .content-div .unfollow {
+        width: auto;
+    }
+    .end-text {
+        margin-bottom: 100px;
+        
+    }
+}
+  
+/* For landscape tablets and medium devices */
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+    /* CSS rules for landscape tablets and medium devices */
+    
+    .home-component {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        position: relative; /* Add position relative to the flex container */
+    }
+
+    .middle-component {
+        width: 100%;
+    }
+
+    .tweets-container {
+       
+    }
+
+    .right-component {
+        display: none;
+    }
+
+    .tab-component {
+        position: fixed;
+        bottom: 0;
+        width: 100%; /* Ensure the width spans the entire screen */
+        background-color: #fff; /* Add a background color if needed */
+        z-index: 100; /* Ensure it's above other content */
+        height: 75px;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .tab-container{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .tab-button {
+        margin: 0px;
+    }
+    .tab-button h1 {
+        display: none;
+
+    }
+    #twitter-logo {
+        display: none;
+    }
+    .profile-info-tab-div {
+        margin: 0px;
+        width: auto;
+    }
+    .profile-info-pic-div {
+        margin: 0px;
+    }
+    #tweet-tab-button {
+        height: 50px;
+        width: 50px;
+        margin: 0px;
+    }
+    #logout-button {
+        display: none;
+    }
+
+    #profile-switch {
+        display: none;
+    }
+
+    .profile-info {
+        display: none;
+    }
+
+    .content-div .unfollow {
+        width: auto;
+    }
+    .end-text {
+        margin-bottom: 100px;
+        
+    }
+}
+  
+/* For desktops */
+@media only screen and (min-width: 1025px) {
+    /* CSS rules for desktops */
+}
+  
+/* For large desktops */
+@media only screen and (min-width: 1200px) {
+    /* CSS rules for large desktops */
 }

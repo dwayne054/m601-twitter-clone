@@ -51,3 +51,106 @@
     border-radius:120px;
     
 }
+
+.edit-profile-label {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.edit-profile-label{
+   
+    margin-bottom: 2px;
+    font-family: "Roboto", sans-serif;
+
+    font-weight: 400;
+    font-style: normal;
+    font-size: 12px;
+}
+
+.upload-image-button-profile{
+   
+    font-family: "Roboto", sans-serif;
+    width: 100%;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 14px;
+    background-color: var(--twitter-white);
+    color: var(--twitter-blue);
+    border: none;
+    border-radius: 50px;
+    padding: 6px 18px 6px 18px;
+    cursor: pointer;
+    border: 1px solid var(--twitter-blue);
+    margin: 12px 0 12px 0;
+    transition: .1s ease-in-out;    
+}
+.upload-image-button-profile:hover{
+    background-color: var(--twitter-blue);
+    color: var(--twitter-white);
+}
+
+.edit-input{
+    height: 100%; /* Adjust height as needed */
+    resize: none;
+    border-radius: 6px;
+    border: 1px solid var(--twitter-gray-light-dark);
+    text-align: left; /* Align text to the top left */
+    padding: 10px; /* Add padding if needed */
+   
+    box-sizing: border-box; /* Include padding and border in width calculation */
+    transition: border-color 0.3s; /* Add transition for smooth effect */
+}
+
+.edit-input:focus {
+    border-color: var(--twitter-blue); /* Change border color when textarea is focused */
+    outline: var(--twitter-blue); /* Remove default focus outline */
+}
+
+
+.logout-edit-profile {
+    width: 30%;
+    align-self: flex-end;
+    margin-top: 20px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 14px;
+    background-color: var(--twitter-red);
+    color: var(--twitter-white);
+    border: none;
+    border-radius: 50px;
+    padding: 6px 18px 6px 18px;
+    cursor: pointer;
+
+}
+
+.logout-edit-profile:hover {
+    background-color: var(--twitter-red-dark);
+    color: var(--twitter-white);
+}
+
+@media only screen and (max-width: 600px) {
+    /* CSS rules for smartphones */
+    
+}
+  
+/* For portrait tablets */
+@media only screen and (min-width: 601px) and (max-width: 768px) {
+    /* CSS rules for portrait tablets */
+}
+  
+/* For landscape tablets and medium devices */
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+    /* CSS rules for landscape tablets and medium devices */
+}
+  
+/* For desktops */
+@media only screen and (min-width: 1025px) {
+    /* CSS rules for desktops */
+}
+  
+/* For large desktops */
+@media only screen and (min-width: 1200px) {
+    /* CSS rules for large desktops */
+}

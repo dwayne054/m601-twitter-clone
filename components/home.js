@@ -9,7 +9,8 @@ import { getUserData } from '../api/userData.js';
 import { profilePage } from './profilePage.js';
 import { updateUI } from '../app.js';
 import { TweetsPagination } from '../api/fetchTweets.js';
-
+import { createModalTweetForm } from './createTweet.js';
+import { showLogoutModal } from './logoutModal.js';
 let currentPage = 'Home';
 
 function createHomeComponent() {
@@ -90,19 +91,8 @@ function createHomeComponent() {
 
     // event listener for tweet button 
     tweetButtonTab.addEventListener('click', () => {
+        createModalTweetForm();
     
-        
-        if ( currentPage === "Profile") {
-            
-            homePageSwitch.click()
-
-           
-        } else {
-            // Scroll the feed to bring the tweet form into view
-            tweetFormComponent.scrollIntoView({ behavior: 'smooth', block: 'start' }); 
-            lastTweetKey = null;
-            
-        }
     })
 
     
@@ -167,6 +157,10 @@ function createHomeComponent() {
     const tweetsContainer = document.createElement('div');
     tweetsContainer.classList.add('tweets-container');
     
+    // the home tite background
+    const homeTitle = document.createElement('div');
+    homeTitle.classList.add('title-background');
+    middleComponent.appendChild(homeTitle);
    
 
     // Prepare the tweet form background
@@ -216,7 +210,7 @@ function createHomeComponent() {
 
 
 
-    // TODO profile information seportator
+    // TODO profile information sepertator
 
     getUserData().then(userData => {
         
@@ -255,19 +249,16 @@ function createHomeComponent() {
         profileInfoTabContainer.appendChild(profileTabName)
         profileInfoTabContainer.appendChild(profileTabUser)
 
-        // Logout Button
-        const logoutButton = stateButton('logout', 'logout-button');
-        logoutButton.textContent = "";
-        const logoutImage = document.createElement('img')
-        logoutImage.alt = "logout";
-        logoutImage.src = '../assets/logout.svg';
-        logoutImage.className = 'tab-icon logout-icon';
+        
 
-        logoutButton.appendChild(logoutImage);
+        
+
+     
         
         tabProfileInfo.appendChild(profileInfoPicContainer)
         tabProfileInfo.appendChild(profileInfoTabContainer)
-        tabProfileInfo.appendChild(logoutButton);
+
+
 
 
     

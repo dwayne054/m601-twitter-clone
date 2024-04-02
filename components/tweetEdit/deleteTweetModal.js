@@ -2,7 +2,6 @@
 import { getFirestore, doc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 import { showAlert } from "../../app.js";
 
-
 export function showDeleteTweetModal(tweetId) {
     const modalContainer = document.createElement('div');
     modalContainer.className = 'modal-container';

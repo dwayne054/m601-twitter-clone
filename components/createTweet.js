@@ -2,15 +2,10 @@
 import { getFirestore, collection, addDoc, doc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-storage.js";
 import AppState from './state.js'; // Adjust the import path as needed
-import { renderTweets } from './createFeed.js'; // Adjust import path as needed
+
 import { showAlert } from "../app.js";
 
 
-async function refreshTweets() {
-    const fetchedTweets = await fetchTweetsFromFollowing()
-    console.log(fetchedTweets)
-    return fetchedTweets
-}
 
 
 function createModalTweetForm() {
@@ -418,4 +413,4 @@ function createTweetForm(parentContainer, refreshCallback) {
 
 
 
-export { createTweet, createTweetForm, refreshTweets, createModalTweetForm };
+export { createTweet, createTweetForm,  createModalTweetForm };

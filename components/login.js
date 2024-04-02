@@ -3,7 +3,6 @@ import { signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.
 import AppState from "../components/state.js";
 import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 import { dbFirestore } from "../api/firebase.js"; // Ensure you have exported dbFirestore correctly from your firebase.js file
-import { stateButton } from "./stateButton.js";
 import { createUserComponent } from "./createUser.js";
 import { showAlert } from "../app.js";
 

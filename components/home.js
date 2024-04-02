@@ -1,16 +1,11 @@
-import AppState from './state.js';
-import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
-
 import { createTweetForm } from './createTweet.js';
 import { renderTweets } from './createFeed.js';
-import { refreshTweets } from './createTweet.js';
 import { stateButton } from './stateButton.js';
 import { getUserData } from '../api/userData.js';
 import { profilePage } from './profilePage.js';
-import { updateUI } from '../app.js';
 import { TweetsPagination } from '../api/fetchTweets.js';
 import { createModalTweetForm } from './createTweet.js';
-import { showLogoutModal } from './logoutModal.js';
+
 let currentPage = 'Home';
 
 function createHomeComponent() {
@@ -177,6 +172,7 @@ function createHomeComponent() {
 
     // Infinite scrolling logic
 
+    //  This creates an instance of a TweetsPagination object
     const tweetsPagination = new TweetsPagination();
 
     // end of tweets message 
@@ -249,17 +245,10 @@ function createHomeComponent() {
         profileInfoTabContainer.appendChild(profileTabName)
         profileInfoTabContainer.appendChild(profileTabUser)
 
-        
-
-        
-
      
         
         tabProfileInfo.appendChild(profileInfoPicContainer)
         tabProfileInfo.appendChild(profileInfoTabContainer)
-
-
-
 
     
     }).catch(error => console.error("Error fetching user data:", error));
@@ -272,10 +261,9 @@ function createHomeComponent() {
         console.error("Error during initial tweet fetch:", error);
     });
     
-    //automatically go to the profile
-    //profilePageSwitch.click()
 
- return homeComponent
+
+    return homeComponent
 }
 
 function createButton(text, id) {

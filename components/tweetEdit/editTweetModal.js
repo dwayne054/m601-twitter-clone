@@ -1,7 +1,6 @@
 import { getFirestore, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
-import { getStorage, ref as storageRef, uploadBytes, deleteObject, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-storage.js";
+import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-storage.js";
 import { showAlert } from "../../app.js";
-
 
 export function showEditTweetModal(tweetId, currentContent, currentImageUrl) {
     

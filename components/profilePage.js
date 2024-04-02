@@ -1,13 +1,10 @@
 import AppState from "./state.js";
-import { stateButton } from "./stateButton.js";
 import { fetchUserTweets } from "../api/fetchTweets.js"; // Assuming fetchUserTweets is the adjusted function
 import { getUserData } from "../api/userData.js";
-import { getDatabase, ref, remove, update } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
 import { formatTweetDate } from "./createFeed.js";
 import { showProfileEditModal } from './editProfile.js';
 import { showDeleteTweetModal } from "./tweetEdit/deleteTweetModal.js";
 import { showEditTweetModal } from "./tweetEdit/editTweetModal.js";
-import { getStorage, ref as storageRef, uploadBytes, deleteObject, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-storage.js";
 
 function profilePage() {
     

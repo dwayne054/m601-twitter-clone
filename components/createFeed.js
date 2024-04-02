@@ -1,8 +1,5 @@
 import { getFirestore, doc, getDoc, updateDoc, arrayUnion, arrayRemove } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 import AppState from "./state.js";
-
-// Add these import statements if not already present
-import { getDatabase, ref, update } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
 import { dbFirestore } from "../api/firebase.js";
 
 // Get current user's following list
